@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using RestaurantReservation.Data;
 using RestaurantReservation.Models;
 using System;
 using System.Collections.Generic;
@@ -13,9 +16,20 @@ namespace RestaurantReservation.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ApplicationDbContext _context;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserManager<RRUser> _userManager;
+
+        public HomeController(ILogger<HomeController> logger, 
+            ApplicationDbContext context,
+            RoleManager<IdentityRole> roleManager,
+            UserManager<RRUser> userManager
+            )
         {
             _logger = logger;
+            _context = context;
+            _roleManager = roleManager;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -27,6 +41,13 @@ namespace RestaurantReservation.Controllers
         {
             return View();
         }
+
+        [AllowAnonymous]
+        public IActionResult Landing()
+        {
+            return View();
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
