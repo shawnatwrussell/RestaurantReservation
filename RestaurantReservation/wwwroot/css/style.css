@@ -122,6 +122,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*--------------------------------------------------------------
+# Jumbotron
+--------------------------------------------------------------*/
+jumbotron {
+    background-color:cornsilk
+}
+
+
+/*--------------------------------------------------------------
 # Top Bar
 --------------------------------------------------------------*/
 #topbar {
@@ -1613,20 +1621,20 @@ section {
   color: #fff;
 }
 
-#footer .footer-top .social-links a {
-  font-size: 18px;
-  display: inline-block;
-  background: #28251f;
-  color: #d3af71;
-  line-height: 1;
-  padding: 8px 0;
-  margin-right: 4px;
-  border-radius: 50%;
-  text-align: center;
-  width: 36px;
-  height: 36px;
-  transition: 0.3s;
-}
+    #footer .footer-top .social-links a {
+        font-size: 18px;
+        display: inline-block;
+        background: #8e0606; 
+        color:#cda45e;
+        line-height: 1;
+        padding: 8px 0;
+        margin-right: 4px;
+        border-radius: 50%;
+        text-align: center;
+        width: 36px;
+        height: 36px;
+        transition: 0.3s;
+    }
 
 #footer .footer-top .social-links a:hover {
   background: #cda45e;
