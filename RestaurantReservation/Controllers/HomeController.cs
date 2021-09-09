@@ -17,22 +17,16 @@ namespace RestaurantReservation.Controllers
         private readonly ILogger<HomeController> _logger;
 
         private readonly ApplicationDbContext _context;
-        private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly UserManager<RRUser> _userManager;
 
         public HomeController(ILogger<HomeController> logger, 
-            ApplicationDbContext context,
-            RoleManager<IdentityRole> roleManager,
-            UserManager<RRUser> userManager
+            ApplicationDbContext context
             )
         {
             _logger = logger;
             _context = context;
-            _roleManager = roleManager;
-            _userManager = userManager;
         }
 
-        public IActionResult Index()
+        public IActionResult Dashboard()
         {
             return View();
         }
