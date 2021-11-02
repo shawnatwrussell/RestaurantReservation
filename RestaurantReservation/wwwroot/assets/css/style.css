@@ -30,12 +30,12 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 }
 
 a {
-  color: #cda45e;
+  color: teal;
   text-decoration: none;
 }
 
 a:hover {
-  color: #d9ba85;
+  color: lightskyblue;
   text-decoration: none;
 }
 
@@ -338,19 +338,19 @@ p {
   height: 44px;
   border-radius: 50px;
   transition: all 0.4s;
-  border: 2px solid #cda45e;
+  border: 2px solid steelblue;
 }
 
-.back-to-top i {
-  font-size: 28px;
-  color: #cda45e;
-  line-height: 0;
-}
+    .back-to-top i {
+        font-size: 28px;
+        color: teal;
+        line-height: 0;
+    }
 
-.back-to-top:hover {
-  background: #cda45e;
-  color: #1a1814;
-}
+    .back-to-top:hover {
+        background: teal;
+        color: #1a1814;
+    }
 
 .back-to-top:hover i {
   color: #444444;
@@ -531,7 +531,7 @@ jumbotron {
 }
 
 .navbar a:hover, .navbar .active, .navbar li:hover > a {
-  color: #d9ba85;
+  color: skyblue;
 }
 
 .navbar .dropdown ul {
@@ -564,7 +564,7 @@ jumbotron {
 }
 
 .navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
-  color: #cda45e;
+  color: skyblue;
 }
 
 .navbar .dropdown:hover > ul {
@@ -1873,8 +1873,8 @@ section {
     #footer .footer-top .social-links a {
         font-size: 18px;
         display: inline-block;
-        background: #8e0606; 
-        color:#cda45e;
+        background: teal; 
+        color:lightskyblue;
         line-height: 1;
         padding: 8px 0;
         margin-right: 4px;
@@ -1886,7 +1886,7 @@ section {
     }
 
 #footer .footer-top .social-links a:hover {
-  background: #cda45e;
+  background: lightskyblue;
   color: #fff;
   text-decoration: none;
 }
@@ -1911,7 +1911,7 @@ section {
 
 #footer .footer-top .footer-links ul i {
   padding-right: 2px;
-  color: #cda45e;
+  color: teal;
   font-size: 18px;
   line-height: 1;
 }
@@ -1934,7 +1934,7 @@ section {
 }
 
 #footer .footer-top .footer-links ul a:hover {
-  color: #cda45e;
+  color: teal;
 }
 
 #footer .footer-top .footer-newsletter form {
@@ -1963,14 +1963,14 @@ section {
   background: none;
   font-size: 16px;
   padding: 0 20px 2px 20px;
-  background: #cda45e;
+  background: teal;
   color: #fff;
   transition: 0.3s;
   border-radius: 50px;
 }
 
 #footer .footer-top .footer-newsletter form input[type="submit"]:hover {
-  background: #d3af71;
+  background: lightskyblue;
 }
 
 #footer .copyright {
