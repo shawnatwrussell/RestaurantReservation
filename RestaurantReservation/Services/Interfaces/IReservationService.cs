@@ -7,6 +7,7 @@ namespace RestaurantReservation.Services.Interfaces
 {
     public interface IReservationService
     {
+        public Task<>
 
     }
 }

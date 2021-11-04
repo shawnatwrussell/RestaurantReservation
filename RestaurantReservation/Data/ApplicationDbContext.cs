@@ -19,5 +19,7 @@ namespace RestaurantReservation.Data
             Configuration = configuration;
         }
 
+        //public DbSet<RestaurantReservation.Models.>
+
     }
 }
