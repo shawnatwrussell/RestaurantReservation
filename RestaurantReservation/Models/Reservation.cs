@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using RestaurantReservation.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +25,9 @@ namespace RestaurantReservation.Models
         [DisplayName("Date Created")]
         public DateTimeOffset Created { get; set; }
 
+        [DisplayName("Archived")]
+        public bool Archived { get; set; }
+
 
         //Image File Properties
         [NotMapped]
@@ -39,6 +43,17 @@ namespace RestaurantReservation.Models
 
         [DisplayName("File Extension")]
         public string ImageFileContentType { get; set; }
+
+
+        [Required] //selection on drop-down needed
+        [Display(Name = "Reservation Status")]
+        public ReservationStatuses ReservationStatuses { get; set; } //link to enum
+
+        [DataType(DataType.Date)]
+        [DisplayName("Date Archived")]
+        public DateTimeOffset? ArchivedDate { get; set; }
+
+
 
 
         //Navigational Properties
