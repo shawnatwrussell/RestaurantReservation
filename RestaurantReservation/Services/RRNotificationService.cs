@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.UI.Services;
+using RestaurantReservation.Models;
+using RestaurantReservation.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +22,39 @@ namespace RestaurantReservation.Services
             _emailService = emailService;
             _infoService = infoService;
         }
+
+        public Task SaveNotificationAsync(Notification notification)
+
+        public Task AdminNotificationAsync(Notification notification, int restaurantId)
+        {
+            try
+            {
+                //Get Restaurant Admin
+                List<RRUser> admins = await _infoService.GetMembersInRoleAsync("Admin", restaurantId);
+
+                foreach(RRUser rrUser in admins)
+                {
+                    notification.RecipientId = rrUser.Id;
+
+                    await EmailNotificationAsync(notification, notification.Title);
+                }
+            }
+
+            catch
+            {
+                throw;
+            }
+        }
+
+        public Task MemberNotificationAsync(Notification notification, List<RRUser> members)
+
+        public Task EmailNotificationAsync(Notification notification, string emailSubject)
+
+        public Task SMSNotificationAsync(Notification notification, string phone)
+
+        public Task<List<Notification>> GetReceivedNotificationsAsync(string userId)
+
+        public Task<List<GetSentNotificationsAsync>>(string userId)
 
 
 
