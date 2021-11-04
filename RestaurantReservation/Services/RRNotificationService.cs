@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.UI.Services;
 using RestaurantReservation.Models;
+using RestaurantReservation.Data;
 using RestaurantReservation.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,16 +25,15 @@ namespace RestaurantReservation.Services
             _infoService = infoService;
         }
 
-        public Task SaveNotificationAsync(Notification notification)
-
-        public Task AdminNotificationAsync(Notification notification, int restaurantId)
+        //send a notification to a specific company's Admin, to let them know a ticket was created
+        public async Task AdminsNotificationAsync(Notification notification, int restaurantId)
         {
             try
             {
-                //Get Restaurant Admin
+                //Get company admin
                 List<RRUser> admins = await _infoService.GetMembersInRoleAsync("Admin", restaurantId);
 
-                foreach(RRUser rrUser in admins)
+                foreach (RRUser rrUser in admins)
                 {
                     notification.RecipientId = rrUser.Id;
 
@@ -46,20 +47,70 @@ namespace RestaurantReservation.Services
             }
         }
 
-        public Task MemberNotificationAsync(Notification notification, List<RRUser> members)
+        public async Task EmailNotificationAsync(Notification notification, string emailSubject)
+        {
+            RRUser RRUser = await _context.Users.FindAsync(notification.RecipientId);
 
-        public Task EmailNotificationAsync(Notification notification, string emailSubject)
+            //Send Email
+            string rrUserEmail = rrUser.Email;
+            string message = notification.Message;
 
-        public Task SMSNotificationAsync(Notification notification, string phone)
+            try
+            {
+                await _emailService.SendEmailAsync(rrUserEmail, emailSubject, message);
+            }
 
-        public Task<List<Notification>> GetReceivedNotificationsAsync(string userId)
+            catch
+            {
+                throw;
+            }
+        }
 
-        public Task<List<GetSentNotificationsAsync>>(string userId)
+        public async Task<List<Notification>> GetReceivedNotificationsAsync(string userId)
+        {
+            List<Notification> notifications = await _context.Notification
+                                                                     .Include(n => n.Recipient)
+                                                                     .Include(n => n.Sender)
+                                                                     .Include(n => n.Date)
+                                                                         .ThenInclude(t => t.Time)
+                                                                     .Where(n => n.RecipientId == userId).ToListAsync();
+            return notifications;
+        }
 
+        public async Task<List<Notification>> GetSentNotificationsAsync(string userId)
+        {
+            List<Notification> notifications = await _context.Notification
+                                                         .Include(n => n.Recipient)
+                                                         .Include(n => n.Sender)
+                                                         .Include(n => n.Date)
+                                                             .ThenInclude(t => t.Time)
+                                                         .Where(n => n.SenderId == userId).ToListAsync();
+            return notifications;
 
+        }
 
+        public Task MembersNotificationAsync(Notification notification, List<RRUser> members)
+        {
+            throw new NotImplementedException();
+        }
 
+        public async Task SaveNotificationAsync(Notification notification)
+        {
+            try
+            {
+                await _context.AddAsync(notification);
+                await _context.SaveChangesAsync();
+            }
 
+            catch
+            {
+                throw;
+            }
+        }
 
+        public Task SMSNotificationAsync(string phone, Notification notification)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
