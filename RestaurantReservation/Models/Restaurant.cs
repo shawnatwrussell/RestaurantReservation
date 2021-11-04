@@ -15,7 +15,7 @@ namespace RestaurantReservation.Models
 
         [Required]
         [StringLength(50)]
-        [DisplayName{"Restaurant Name"]
+        [DisplayName("Restaurant Name")]
         public string Name { get; set; }
 
         [DisplayName("Description")]

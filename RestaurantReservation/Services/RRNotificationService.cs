@@ -16,7 +16,7 @@ namespace RestaurantReservation.Services
         private readonly IEmailSender _emailService;
         private readonly IRRRestaurantInfoService _infoService;
 
-        public RRNotificationService(ApplicationDbContext context, 
+        public RRNotificationService(ApplicationDbContext context,
             IEmailSender emailService,
             IRRRestaurantInfoService infoService)
         {
@@ -26,7 +26,21 @@ namespace RestaurantReservation.Services
         }
 
         //send a notification to a specific company's Admin, to let them know a ticket was created
-        public async Task AdminsNotificationAsync(Notification notification, int restaurantId)
+        public async Task SaveNotificationAsync(Notification notification)
+        {
+            try
+            {
+                await _context.AddAsync(notification);
+                await _context.SaveChangesAsync();
+            }
+
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task AdminNotificationAsync(Notification notification, int restaurantId)
         {
             try
             {
@@ -87,26 +101,12 @@ namespace RestaurantReservation.Services
 
         }
 
-        public Task MembersNotificationAsync(Notification notification, List<RRUser> members)
+        public Task MemberNotificationAsync(Notification notification, List<RRUser> members)
         {
             throw new NotImplementedException();
         }
 
-        public async Task SaveNotificationAsync(Notification notification)
-        {
-            try
-            {
-                await _context.AddAsync(notification);
-                await _context.SaveChangesAsync();
-            }
-
-            catch
-            {
-                throw;
-            }
-        }
-
-        public Task SMSNotificationAsync(string phone, Notification notification)
+        public Task SMSNotificationAsync(Notification notification, string phone)
         {
             throw new NotImplementedException();
         }

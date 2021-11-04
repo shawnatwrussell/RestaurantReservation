@@ -22,6 +22,5 @@ namespace RestaurantReservation.Services.Interfaces
 
         public Task<List<Notification>> GetSentNotificationsAsync(string userId);
 
-
     }
 }
