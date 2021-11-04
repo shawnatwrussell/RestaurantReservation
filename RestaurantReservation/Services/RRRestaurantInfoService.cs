@@ -38,8 +38,7 @@ namespace RestaurantReservation.Services
             List<Reservation> reservations = new();
 
             reservations = await _context.Reservation.Include(p => p.Members)
-                                             .Include(t => t.OwnerUser)
-                                             .Where(p => p.CompanyId == restaurantId).ToListAsync();
+                                             .Where(p => p.RestaurantId == restaurantId).ToListAsync();
 
             return reservations;
         }
@@ -72,3 +71,4 @@ namespace RestaurantReservation.Services
 
         }
     }
+}

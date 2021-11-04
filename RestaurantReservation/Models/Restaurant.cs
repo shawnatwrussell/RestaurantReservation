@@ -41,5 +41,9 @@ namespace RestaurantReservation.Models
         public virtual ICollection<RRUser> Members { get; set; } =
             new HashSet<RRUser>();
 
+        public virtual ICollection<Reservation> Reservations { get; set; } =
+            new HashSet<Reservation>();
+
+
     }
 }
