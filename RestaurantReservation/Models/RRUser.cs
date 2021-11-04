@@ -55,7 +55,14 @@ namespace RestaurantReservation.Models
 
         public int? RestaurantId { get; set; }
 
-        public ReservationId MyProperty { get; set; }
+        public int? ReservationId { get; set; }
+
+        //Navigational Properties
+        public virtual Restaurant Restaurant { get; set; }
+
+        public virtual ICollection<Reservation> Reservations { get; set; } =
+            new HashSet<Reservation>();
+
 
     }
 }

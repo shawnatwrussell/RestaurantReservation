@@ -20,7 +20,7 @@ namespace RestaurantReservation.Models
 
         [DataType(DataType.Date)]
         [DisplayName("Date")]
-        public DateTimeOffset Created { get; set; }
+        public DateTimeOffset Date { get; set; }
 
         [Required]
         [DisplayName("Recipient")]

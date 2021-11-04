@@ -44,6 +44,7 @@ namespace RestaurantReservation.Models
         //Navigational Properties
         public virtual Restaurant Restaurant { get; set; }
 
+
         public virtual ICollection<RRUser> Members { get; set; } =
             new HashSet<RRUser>();
 

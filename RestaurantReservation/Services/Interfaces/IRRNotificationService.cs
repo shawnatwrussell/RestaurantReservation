@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestaurantReservation.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace RestaurantReservation.Services.Interfaces
 
         public Task<List<Notification>> GetReceivedNotificationsAsync(string userId);
 
-        public Task<List<GetSentNotificationsAsync>>(string userId);
+        public Task<List<Notification>> GetSentNotificationsAsync(string userId);
 
 
     }

@@ -37,7 +37,7 @@ namespace RestaurantReservation.Services
                 {
                     notification.RecipientId = rrUser.Id;
 
-                    await EmailNotificationAsync(notification, notification.Title);
+                    await EmailNotificationAsync(notification, notification.Message);
                 }
             }
 
@@ -49,7 +49,7 @@ namespace RestaurantReservation.Services
 
         public async Task EmailNotificationAsync(Notification notification, string emailSubject)
         {
-            RRUser RRUser = await _context.Users.FindAsync(notification.RecipientId);
+            RRUser rrUser = await _context.Users.FindAsync(notification.RecipientId);
 
             //Send Email
             string rrUserEmail = rrUser.Email;
@@ -72,7 +72,6 @@ namespace RestaurantReservation.Services
                                                                      .Include(n => n.Recipient)
                                                                      .Include(n => n.Sender)
                                                                      .Include(n => n.Date)
-                                                                         .ThenInclude(t => t.Time)
                                                                      .Where(n => n.RecipientId == userId).ToListAsync();
             return notifications;
         }
@@ -83,7 +82,6 @@ namespace RestaurantReservation.Services
                                                          .Include(n => n.Recipient)
                                                          .Include(n => n.Sender)
                                                          .Include(n => n.Date)
-                                                             .ThenInclude(t => t.Time)
                                                          .Where(n => n.SenderId == userId).ToListAsync();
             return notifications;
 
