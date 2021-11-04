@@ -16,10 +16,29 @@ namespace RestaurantReservation.Models
 
         public int? RestaurantId { get; set; }
 
+        [DisplayName("Team Member")]
+        public string UserId { get; set; }
+
+        [DisplayName("Ticket Status")]
+        public int TicketStatusId { get; set; }
+
+        [DisplayName("Ticket Owner")]
+        public string OwnerUserId { get; set; }
+
         [Required]
         [StringLength(50)]
         [DisplayName("Restaurant Name")]
         public string Name { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        [DisplayName("Title")]
+        public string Title { get; set; }
+
+        [Required]
+        [DisplayName("Description")]
+        public string Description { get; set; }
+
 
         [DataType(DataType.Date)]
         [DisplayName("Date Created")]
@@ -58,6 +77,15 @@ namespace RestaurantReservation.Models
 
         //Navigational Properties
         public virtual Restaurant Restaurant { get; set; }
+
+        public virtual RRUser User { get; set; }
+        public virtual RRUser OwnerUser { get; set; }
+
+        public virtual ReservationStatus ReservationStatus { get; set; }
+
+
+        public virtual ICollection<Notification> Notifications { get; set; } =
+            new HashSet<Notification>();
 
 
         public virtual ICollection<RRUser> Members { get; set; } =
