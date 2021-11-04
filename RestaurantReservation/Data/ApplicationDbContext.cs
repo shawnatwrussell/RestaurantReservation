@@ -19,7 +19,10 @@ namespace RestaurantReservation.Data
             Configuration = configuration;
         }
 
-        //public DbSet<RestaurantReservation.Models.>
+        public DbSet<RestaurantReservation.Models.Restaurant> Restaurant { get; set; }
+        public DbSet<RestaurantReservation.Models.Reservation> Reservation { get; set; }
+        public DbSet<RestaurantReservation.Models.Notification> Notification { get; set; }
+
 
     }
 }

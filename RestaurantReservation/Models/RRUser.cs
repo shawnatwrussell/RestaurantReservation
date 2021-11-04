@@ -52,5 +52,10 @@ namespace RestaurantReservation.Models
         [DisplayName("File Extension")]
         public string ContentType { get; set; }
 
+
+        public int? RestaurantId { get; set; }
+
+        public ReservationId MyProperty { get; set; }
+
     }
 }

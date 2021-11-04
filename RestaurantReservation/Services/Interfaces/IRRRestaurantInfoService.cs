@@ -12,7 +12,9 @@ namespace RestaurantReservation.Services.Interfaces
 
         Task<List<RRUser>> GetAllMembersAsync(int restaurantId);
 
-        Task<List<RRUser>> GetMembersInRoleAsync(string roleName, int companyId);
+        Task<List<Reservation>> GetAllReservationsAsync(int restaurantId);
+
+        Task<List<RRUser>> GetMembersInRoleAsync(string roleName, int restaurantId);
 
     }
 }
